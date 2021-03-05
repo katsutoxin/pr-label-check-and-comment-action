@@ -38,14 +38,14 @@ const { getListOfLabels, commentPr, doesPrHasLabels, getListOfAssignees, getMile
       }
     }
 
-    const requiredMilestone = core.getInput('required_milestone');
-    core.info(`[debug] requiredMilestone=${requiredMilestone}`)
-    const milestone = getMilestone()
-    if (requiredMilestone === 'true' && milestone === null) {
-      const errorMsg = 'No milestone is set, please set a sprint to it !'
-      core.error(errorMsg)
-      core.setFailed(errorMsg)
-    }
+    // const requiredMilestone = core.getInput('required_milestone');
+    // core.info(`[debug] requiredMilestone=${requiredMilestone}`)
+    // const milestone = getMilestone()
+    // if (requiredMilestone === 'true' && milestone === null) {
+    //   const errorMsg = 'No milestone is set, please set a sprint to it !'
+    //   core.error(errorMsg)
+    //   core.setFailed(errorMsg)
+    // }
 
     const requiredAssignees = core.getInput('required_assignees');
     const assignees = getListOfAssignees()
