@@ -56,6 +56,8 @@ const { getListOfLabels, commentPr, doesPrHasLabels, getListOfAssignees, getMile
 
     const requiredAssignees = core.getInput('required_assignees');
     const assignees = getListOfAssignees()
+    core.info(`[debug] requiredAssignees=${requiredAssignees}`)
+    core.info(`[debug] assignees=${assignees}`)
     if (requiredAssignees === 'true' && assignees.length === 0) {
       const errorMsg = 'No Assignee is set, please assign to yourself !'
       core.error(errorMsg)
