@@ -1,5 +1,5 @@
 const core = require('@actions/core');
-const { getListOfLabels, commentPr, doesPrHasLabels } = require('./utils/utils.js');
+const { getListOfLabels, commentPr, doesPrHasLabels, getListOfAssignees, getMilestone } = require('./utils/utils.js');
 
 (async function () {
   try {
@@ -11,10 +11,21 @@ const { getListOfLabels, commentPr, doesPrHasLabels } = require('./utils/utils.j
       core.info(`List of required labels -> ${requiredLabels}`)
     }
 
+    const requiredMilestone = core.getInput('required_milestone');
+    core.info(`[debug] requiredMilestone=${requiredMilestone}`)
+    if (requiredMilestone === 'true' && getMilestone() === null) {
+      core.error('No milestone is set, please set a sprint to it !')
+    }
+
+    const requiredAssignees = core.getInput('required_assignees');
+    if (requiredAssignees === 'true' && getListOfAssignees().length === 0) {
+      core.error('No Assignee is set, please assign to yourself !')
+    }
+
     const commentMessage = `Add at least one of the required labels to this PR \n\n Required labels are : ${requiredLabels}`,
       commentMessageWithUserName = `Hi @{USER}! ${commentMessage}`;
 
-    // get list of PR labels 
+    // get list of PR labels
     const listOfLabelsInPR = getListOfLabels()
     console.log('listOfLabelsInPR', listOfLabelsInPR);
     // labels in PR is 0

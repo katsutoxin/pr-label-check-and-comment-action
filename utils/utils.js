@@ -23,6 +23,18 @@ const getListOfLabels = () => {
   return prLabels;
 }
 
+const getListOfAssignees = () => {
+  const prAssignees = delve(github.context, 'payload.pull_request.assignees', [])
+
+  return prAssignees;
+}
+
+const getMilestone = () => {
+  const prMilestone = delve(github.context, 'payload.pull_request.milestone', null)
+
+  return prMilestone;
+}
+
 const doesPrHasLabels = (requiredLabels, listOfLabelsInPR) => {
   return requiredLabels.split(',').filter(label => {
     return listOfLabelsInPR.map(label => label.name.trim()).includes(label.trim())
