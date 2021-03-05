@@ -54,11 +54,11 @@ const { getListOfLabels, commentPr, doesPrHasLabels, getListOfAssignees, getMile
     //   core.setFailed(errorMsg)
     // }
 
-    const requiredAssignees = core.getInput('required_assignees');
+    const requiredAssignee = core.getInput('required_assignee');
     const assignees = getListOfAssignees()
-    core.info(`[debug] requiredAssignees=${requiredAssignees}`)
-    core.info(`[debug] assignees=${assignees}`)
-    if (requiredAssignees === 'true' && assignees.length === 0) {
+    core.info(`[debug] requiredAssignee=${requiredAssignee}`)
+    core.info(`[debug] assignees=${assignee}`)
+    if (requiredAssignee === 'true' && assignee.length === 0) {
       const errorMsg = 'No Assignee is set, please assign to yourself !'
       core.error(errorMsg)
       core.setFailed(errorMsg)

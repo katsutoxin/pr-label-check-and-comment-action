@@ -14,8 +14,8 @@ inputs:
   required_milestone:
     description: 'Does it require Milestone?'
     required: true
-  required_assignee:
-    description: 'Does it require assignee?'
+  required_assignees:
+    description: 'Does it require assignees?'
     required: true
 
 runs:
