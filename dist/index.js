@@ -5870,6 +5870,8 @@ const auth = core.getInput('GITHUB_TOKEN');
 const { request } = new Octokit({ auth });
 
 const __getRequestInfo = context => {
+  core.info('DD context=', JSON.stringify(context, null, 2))
+
   const PR = delve(context, 'payload.pull_request', '');
 
   return {
