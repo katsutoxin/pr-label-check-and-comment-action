@@ -13,12 +13,14 @@ const { getListOfLabels, commentPr, doesPrHasLabels, getListOfAssignees, getMile
 
     const requiredMilestone = core.getInput('required_milestone');
     core.info(`[debug] requiredMilestone=${requiredMilestone}`)
-    if (requiredMilestone === 'true' && getMilestone() === null) {
+    const milestone = getMilestone()
+    if (requiredMilestone === 'true' && milestone === null) {
       core.error('No milestone is set, please set a sprint to it !')
     }
 
     const requiredAssignees = core.getInput('required_assignees');
-    if (requiredAssignees === 'true' && getListOfAssignees().length === 0) {
+    const assignees = getListOfAssignees()
+    if (requiredAssignees === 'true' && assignees.length === 0) {
       core.error('No Assignee is set, please assign to yourself !')
     }
 
