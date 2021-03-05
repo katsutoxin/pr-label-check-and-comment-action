@@ -18,7 +18,7 @@ const __getRequestInfo = context => {
 }
 
 const getListOfLabels = () => {
-  core.info('LL pull_request=', JSON.stringify(github.context.payload.pull_request, null, 2))
+  core.info('LL pull_request=', JSON.stringify(github.context, null, 2))
   const prLabels = delve(github.context, 'payload.pull_request.labels', [])
 
   return prLabels;
