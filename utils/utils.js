@@ -73,5 +73,7 @@ const commentPr = async body => {
 module.exports = {
   commentPr,
   getListOfLabels,
+  getMilestone,
+  getListOfAssignees,
   doesPrHasLabels
 }
