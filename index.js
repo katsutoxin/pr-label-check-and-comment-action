@@ -17,7 +17,7 @@ const { getListOfLabels, commentPr, doesPrHasLabels, getListOfAssignees, getMile
 
     // get list of PR labels
     const listOfLabelsInPR = getListOfLabels()
-    core.info('listOfLabelsInPR', listOfLabelsInPR);
+    core.info(`listOfLabelsInPR ${listOfLabelsInPR}`);
     // labels in PR is 0
     if (listOfLabelsInPR.length === 0) {
       try {

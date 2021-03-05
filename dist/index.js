@@ -24,7 +24,7 @@ const { getListOfLabels, commentPr, doesPrHasLabels, getListOfAssignees, getMile
 
     // get list of PR labels
     const listOfLabelsInPR = getListOfLabels()
-    core.info('listOfLabelsInPR', listOfLabelsInPR);
+    core.info(`listOfLabelsInPR ${listOfLabelsInPR}`);
     // labels in PR is 0
     if (listOfLabelsInPR.length === 0) {
       try {
@@ -5885,20 +5885,22 @@ const __getRequestInfo = context => {
 }
 
 const getListOfLabels = () => {
-  core.info('LL pull_request=', JSON.stringify(github.context, null, 2))
+  core.info(`LL pull_request = ${JSON.stringify(github.context, null, 2)}`)
   const prLabels = delve(github.context, 'payload.pull_request.labels', [])
 
   return prLabels;
 }
 
 const getListOfAssignees = () => {
+  core.info(`LLL pull_request=${JSON.stringify(github.context, null, 2)}`)
+
   const prAssignees = delve(github.context, 'payload.pull_request.assignees', [])
 
   return prAssignees;
 }
 
 const getMilestone = () => {
-  core.info('MM pull_request=', JSON.stringify(github.context.payload.pull_request, null, 2))
+  core.info(`MM pull_request=${JSON.stringify(github.context, null, 2)}`)
   const prMilestone = delve(github.context, 'payload.pull_request.milestone', null)
 
   return prMilestone;
