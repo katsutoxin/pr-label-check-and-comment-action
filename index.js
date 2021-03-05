@@ -38,19 +38,20 @@ const { getListOfLabels, commentPr, doesPrHasLabels, getListOfAssignees, getMile
       }
     }
 
-    // const requiredMilestone = core.getInput('required_milestone');
-    // core.info(`[debug] requiredMilestone=${requiredMilestone}`)
-    // const milestone = getMilestone()
-    // if (requiredMilestone === 'true' && milestone === null) {
-    //   const errorMsg = 'No milestone is set, please set a sprint to it !'
-    //   core.error(errorMsg)
-    //   core.setFailed(errorMsg)
-    // }
+    const requiredMilestone = core.getInput('required_milestone');
+    const milestone = getMilestone()
+    core.debug(`requiredMilestone=${requiredMilestone}`)
+    // core.debug(`milestone=${milestone}`)
+    if (requiredMilestone === 'true' && milestone === null) {
+      const errorMsg = 'No milestone is set, please set a sprint to it !'
+      core.error(errorMsg)
+      core.setFailed(errorMsg)
+    }
 
     const requiredAssignee = core.getInput('required_assignee');
     const assignees = getListOfAssignees()
-    core.info(`[debug] requiredAssignee=${requiredAssignee}`)
-    core.info(`[debug] assignees=${assignees}`)
+    core.debug(`requiredAssignee=${requiredAssignee}`)
+    // core.debug(`assignees=${assignees}`)
     if (requiredAssignee === 'true' && assignees.length === 0) {
       const errorMsg = 'No Assignee is set, please assign to yourself !'
       core.error(errorMsg)

@@ -27,7 +27,7 @@ const getListOfLabels = () => {
 }
 
 const getListOfAssignees = () => {
-  core.info(`LLL pull_request=${JSON.stringify(github.context.payload.pull_request, null, 2)}`)
+  // core.info(`LLL pull_request=${JSON.stringify(github.context.payload.pull_request, null, 2)}`)
 
   const prAssignees = delve(github.context, 'payload.pull_request.assignees', [])
 
@@ -35,7 +35,7 @@ const getListOfAssignees = () => {
 }
 
 const getMilestone = () => {
-  core.info(`MM pull_request=${JSON.stringify(github.context.payload.pull_request, null, 2)}`)
+  // core.info(`MM pull_request=${JSON.stringify(github.context.payload.pull_request, null, 2)}`)
   const prMilestone = delve(github.context, 'payload.pull_request.milestone', null)
 
   return prMilestone;
