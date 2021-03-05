@@ -45,7 +45,7 @@ const { getListOfLabels, commentPr, doesPrHasLabels, getListOfAssignees, getMile
     if (requiredMilestone === 'true') {
       if (milestone === null) {
         const errorMsg = 'No milestone is set, please set a sprint to it !'
-        core.error(errorMsg)
+        // core.error(errorMsg)
         core.setFailed(errorMsg)
       } else {
         core.info(`Found milestone: ${milestone.title}`)
@@ -60,7 +60,7 @@ const { getListOfLabels, commentPr, doesPrHasLabels, getListOfAssignees, getMile
     if (requiredAssignee === 'true') {
       if (assignees.length === 0) {
         const errorMsg = 'No Assignee is set, please assign to yourself !'
-        core.error(errorMsg)
+        // core.error(errorMsg)
         core.setFailed(errorMsg)
       } else {
         core.info(`Found assignees: ${assignees.map(x=>x.login).join()}`)
