@@ -11,6 +11,13 @@ inputs:
   required_labels:
     description: 'List of required labels'
     required: true
+  required_milestone:
+    description: 'Does it require Milestone?'
+    required: true
+  required_assignees:
+    description: 'Does it require assignees?'
+    required: true
+
 runs:
   using: 'node12'
   main: 'dist/index.js'
