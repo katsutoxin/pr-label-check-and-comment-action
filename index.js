@@ -17,7 +17,7 @@ const { getListOfLabels, commentPr, doesPrHasLabels, getListOfAssignees, getMile
 
     // get list of PR labels
     const listOfLabelsInPR = getListOfLabels()
-    core.info(`listOfLabelsInPR ${listOfLabelsInPR}`);
+    // core.info(`listOfLabelsInPR ${listOfLabelsInPR}`);
     // labels in PR is 0
     if (listOfLabelsInPR.length === 0) {
       try {
@@ -27,7 +27,7 @@ const { getListOfLabels, commentPr, doesPrHasLabels, getListOfAssignees, getMile
       }
       core.setFailed(commentMessage)
     } else {
-      core.info(`List of PR Labels -> ${listOfLabelsInPR}`)
+      // core.info(`List of PR Labels -> ${listOfLabelsInPR}`)
       const commonRequiredAndPrLabels = doesPrHasLabels(requiredLabels, listOfLabelsInPR)
 
       if (commonRequiredAndPrLabels.length === 0) {
@@ -40,22 +40,32 @@ const { getListOfLabels, commentPr, doesPrHasLabels, getListOfAssignees, getMile
 
     const requiredMilestone = core.getInput('required_milestone');
     const milestone = getMilestone()
-    core.debug(`requiredMilestone=${requiredMilestone}`)
+    core.info(`requiredMilestone=${requiredMilestone}`)
     // core.debug(`milestone=${milestone}`)
-    if (requiredMilestone === 'true' && milestone === null) {
-      const errorMsg = 'No milestone is set, please set a sprint to it !'
-      core.error(errorMsg)
-      core.setFailed(errorMsg)
+    if (requiredMilestone === 'true') {
+      if (milestone === null) {
+        const errorMsg = 'No milestone is set, please set a sprint to it !'
+        core.error(errorMsg)
+        core.setFailed(errorMsg)
+      } else {
+        core.info(`found milestone: ${milestone.title}`)
+      }
+
     }
 
     const requiredAssignee = core.getInput('required_assignee');
     const assignees = getListOfAssignees()
-    core.debug(`requiredAssignee=${requiredAssignee}`)
+    core.info(`requiredAssignee=${requiredAssignee}`)
     // core.debug(`assignees=${assignees}`)
-    if (requiredAssignee === 'true' && assignees.length === 0) {
-      const errorMsg = 'No Assignee is set, please assign to yourself !'
-      core.error(errorMsg)
-      core.setFailed(errorMsg)
+    if (requiredAssignee === 'true') {
+      if (assignees.length === 0) {
+        const errorMsg = 'No Assignee is set, please assign to yourself !'
+        core.error(errorMsg)
+        core.setFailed(errorMsg)
+      } else {
+        core.info(`found assignees: ${assignees.map(x=>x.login).join()}`)
+      }
+
     }
   } catch(e) {
     core.error(e.message)
