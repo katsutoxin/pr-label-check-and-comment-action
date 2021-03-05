@@ -18,22 +18,6 @@ const { getListOfLabels, commentPr, doesPrHasLabels, getListOfAssignees, getMile
       core.info(`List of required labels -> ${requiredLabels}`)
     }
 
-    const requiredMilestone = core.getInput('required_milestone');
-    core.info(`[debug] requiredMilestone=${requiredMilestone}`)
-    const milestone = getMilestone()
-    if (requiredMilestone === 'true' && milestone === null) {
-      const errorMsg = 'No milestone is set, please set a sprint to it !'
-      core.error(errorMsg)
-      core.setFailed(errorMsg)
-    }
-
-    const requiredAssignees = core.getInput('required_assignees');
-    const assignees = getListOfAssignees()
-    if (requiredAssignees === 'true' && assignees.length === 0) {
-      const errorMsg = 'No Assignee is set, please assign to yourself !'
-      core.error(errorMsg)
-      core.setFailed(errorMsg)
-    }
 
     const commentMessage = `Add at least one of the required labels to this PR \n\n Required labels are : ${requiredLabels}`,
       commentMessageWithUserName = `Hi @{USER}! ${commentMessage}`;
@@ -59,6 +43,23 @@ const { getListOfLabels, commentPr, doesPrHasLabels, getListOfAssignees, getMile
       } else {
         core.info(`Matched PR labels ${commonRequiredAndPrLabels}`)
       }
+    }
+
+    const requiredMilestone = core.getInput('required_milestone');
+    core.info(`[debug] requiredMilestone=${requiredMilestone}`)
+    const milestone = getMilestone()
+    if (requiredMilestone === 'true' && milestone === null) {
+      const errorMsg = 'No milestone is set, please set a sprint to it !'
+      core.error(errorMsg)
+      core.setFailed(errorMsg)
+    }
+
+    const requiredAssignees = core.getInput('required_assignees');
+    const assignees = getListOfAssignees()
+    if (requiredAssignees === 'true' && assignees.length === 0) {
+      const errorMsg = 'No Assignee is set, please assign to yourself !'
+      core.error(errorMsg)
+      core.setFailed(errorMsg)
     }
   } catch(e) {
     core.error(e.message)
